@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stecno — Asistente técnico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <h2>✦ Stecno</h2>
+
+            <button id="new-chat" class="new-chat">
+                + Nueva consulta
+            </button>
+
+            <p class="sidebar-label">Tu conversación</p>
+
+            <div id="chat-history"></div>
+
+            <div class="sidebar-footer">
+                Stecno — Infraestructura de redes<br>
+                <a class="back-link" href="index.html">← Volver al sitio</a>
+            </div>
+        </aside>
+
+        <main class="chat">
+
+            <header class="chat-header">
+                <div class="chat-avatar">ST</div>
+
+                <div>
+                    <h1>Asistente técnico de preventa</h1>
+                    <span class="status">Te ayuda a dimensionar tu proyecto</span>
+                </div>
+            </header>
+
+            <section
+                id="messages"
+                class="messages"
+                aria-live="polite"
+                aria-label="Conversación"
+            >
+                <div class="welcome">
+                    <div class="welcome-icon">ST</div>
+
+                    <h2>¿En qué proyecto estás pensando?</h2>
+
+                    <p>
+                        Contame qué querés resolver —red nueva, cámaras, WiFi
+                        empresarial, monitoreo— y te hago algunas preguntas
+                        para entender la magnitud.
+                    </p>
+                </div>
+            </section>
+
+            <form id="chat-form" class="chat-form">
+                <label class="sr-only" for="message-input">
+                    Escribí tu mensaje
+                </label>
+
+                <input
+                    type="text"
+                    id="message-input"
+                    placeholder="Escribí un mensaje..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button type="submit" id="send-button">
+                    Enviar
+                </button>
+            </form>
+
+            <p class="disclaimer">
+                La IA puede cometer errores. El presupuesto final siempre lo define un técnico de Stecno.
+            </p>
+
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

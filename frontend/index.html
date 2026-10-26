@@ -1,87 +1,213 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat IA</title>
-
+    <title>Stecno — Infraestructura de redes y sistemas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-    <div class="app">
 
-        <aside class="sidebar">
-            <h2>✦ Chat IA</h2>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand">
+                <svg class="brand-mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#1f6feb"/>
+                            <stop offset="1" stop-color="#22d3c7"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="40" height="40" rx="11" fill="url(#brandGrad)"/>
+                    <circle cx="13" cy="14" r="3" fill="#fff"/>
+                    <circle cx="27" cy="14" r="3" fill="#fff"/>
+                    <circle cx="20" cy="27" r="3" fill="#fff"/>
+                    <line x1="13" y1="14" x2="27" y2="14" stroke="#fff" stroke-width="1.6"/>
+                    <line x1="13" y1="14" x2="20" y2="27" stroke="#fff" stroke-width="1.6"/>
+                    <line x1="27" y1="14" x2="20" y2="27" stroke="#fff" stroke-width="1.6"/>
+                </svg>
+                Stecno
+            </a>
 
-            <button id="new-chat" class="new-chat">
-                + Nuevo chat
-            </button>
+            <nav class="main-nav">
+                <a href="index.html" aria-current="page">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="contacto.html">Contacto</a>
+                <a href="chat.html" class="nav-cta" target="_blank" rel="noopener">✦ Asistente IA</a>
+            </nav>
+        </div>
+    </header>
 
-            <p class="sidebar-label">Tus conversaciones</p>
+    <section class="hero">
+        <div class="container">
+            <div>
+                <span class="eyebrow">Integración de redes e infraestructura</span>
+                <h1>Te armamos la infraestructura de redes <span>de punta a punta</span></h1>
+                <p>
+                    Switches, FortiGate con WiFi empresarial, Starlink, redes LAN,
+                    monitoreo 24/7 con Zabbix, interconexión de sedes y videovigilancia.
+                    Contanos qué necesitás y nuestro equipo arma un presupuesto a medida
+                    de tu proyecto.
+                </p>
 
-            <div id="chat-history"></div>
-
-            <div class="sidebar-footer">
-                Proyecto de aprendizaje
+                <div class="hero-actions">
+                    <a href="chat.html" class="btn btn-primary" target="_blank" rel="noopener">✦ Hablar con el asistente</a>
+                    <a href="servicios.html" class="btn btn-outline">Ver servicios</a>
+                </div>
             </div>
-        </aside>
 
-        <main class="chat">
+            <div class="hero-panel">
+                <h3>Stecno en números</h3>
+                <ul class="hero-stat-list">
+                    <li><span>Zona de cobertura</span> <strong>Montevideo y área metropolitana</strong></li>
+                    <li><span>Horario de atención</span> <strong>Lun. a vier. 9:00–18:00</strong></li>
+                    <li><span>Presupuesto</span> <strong>A medida de cada proyecto</strong></li>
+                    <li><span>Primer contacto</span> <strong>Asistente IA, las 24 horas</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-            <header class="chat-header">
-                <div class="avatar">✦</div>
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <span class="eyebrow">Qué hacemos</span>
+                <h2>Infraestructura pensada para tu operación</h2>
+                <p>Desde un local con un par de cámaras hasta una empresa con varias sedes interconectadas.</p>
+            </div>
 
+            <div class="service-grid">
+                <article class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>Switches</h3>
+                    <p>Instalación y configuración de switches para redes cableadas de cualquier tamaño.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">📶</div>
+                    <h3>FortiGate + Access Points</h3>
+                    <p>Firewall FortiGate con access points para WiFi empresarial seguro.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🛰️</div>
+                    <h3>Starlink</h3>
+                    <p>Configuración de Starlink para conectar sedes remotas o de difícil acceso.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Redes LAN</h3>
+                    <p>Armado de redes LAN completas para oficinas nuevas, de punta a punta.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Monitoreo con Zabbix</h3>
+                    <p>Monitoreo 24/7 de tu infraestructura para anticiparte a los problemas.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🔗</div>
+                    <h3>Interconexión vía VPN</h3>
+                    <p>Conectá varias sedes entre sí de forma segura mediante VPN.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🎥</div>
+                    <h3>Videovigilancia</h3>
+                    <p>Cámaras IP con NVR centralizado para control interno y perimetral.</p>
+                </article>
+
+                <article class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Soporte y mantenimiento</h3>
+                    <p>Acompañamiento post-instalación para que todo siga funcionando bien.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="alt-bg">
+        <div class="container">
+            <div class="section-title">
+                <span class="eyebrow">Cómo trabajamos</span>
+                <h2>De la idea a la infraestructura instalada</h2>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Nos contás qué necesitás</h4>
+                    <p>Por el asistente IA o el formulario de contacto, en tus propias palabras.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Relevamiento técnico</h4>
+                    <p>Dimensionamos el proyecto: puestos, área a cubrir, equipamiento existente.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Presupuesto y visita</h4>
+                    <p>Un técnico arma el presupuesto, que se termina de definir con una visita al lugar.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Instalación y soporte</h4>
+                    <p>Implementamos la solución y seguimos acompañándote después.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="cta-banner">
                 <div>
-                    <h1>Asistente IA</h1>
-                    <span class="status">Tu asistente personal</span>
+                    <h2>¿No sabés bien por dónde arrancar?</h2>
+                    <p>Contale a nuestro asistente qué estás necesitando y te orienta en minutos.</p>
                 </div>
-            </header>
+                <a href="chat.html" class="btn btn-primary" target="_blank" rel="noopener">✦ Ir al asistente IA</a>
+            </div>
+        </div>
+    </section>
 
-            <section
-                id="messages"
-                class="messages"
-                aria-live="polite"
-                aria-label="Conversación"
-            >
-                <div class="welcome">
-                    <div class="welcome-icon">✦</div>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Stecno</h3>
+                <p>Integración de infraestructura de redes y sistemas en Montevideo: desde el diseño hasta el soporte post-instalación.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="chat.html" target="_blank" rel="noopener">Asistente IA</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li>Cerrito 450, Montevideo</li>
+                    <li>presupuestos@stecno.com</li>
+                    <li>Lun. a vier. 9:00–18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Stecno. Proyecto académico — UTU, Tecnicatura en Redes y Software.
+        </div>
+    </footer>
 
-                    <h2>¿En qué puedo ayudarte?</h2>
-
-                    <p>
-                        Escribí tu pregunta y comencemos
-                        una conversación.
-                    </p>
-                </div>
-            </section>
-
-            <form id="chat-form" class="chat-form">
-                <label class="sr-only" for="message-input">
-                    Escribí tu mensaje
-                </label>
-
-                <input
-                    type="text"
-                    id="message-input"
-                    placeholder="Escribí un mensaje..."
-                    autocomplete="off"
-                    required
-                >
-
-                <button type="submit" id="send-button">
-                    Enviar
-                </button>
-            </form>
-
-            <p class="disclaimer">
-                La IA puede cometer errores. Verificá la información.
-            </p>
-
-        </main>
-    </div>
-
-    <script src="js/app.js"></script>
 </body>
 </html>

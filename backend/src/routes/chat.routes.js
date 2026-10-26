@@ -1,23 +1,21 @@
 const express = require("express");
-/* const { generateResponse } =
-  require("../services/gemini.service"); */
-  const { generateResponse, listModels } =
-  require("../services/gemini.service");
+
+const { generateResponse } = require("../services/gemini.service");
 
 const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
-        const { message } = req.body;
+        const { history } = req.body;
 
-        if (!message || !message.trim()) {
+        if (!history || !Array.isArray(history) || history.length === 0) {
             return res.status(400).json({
                 success: false,
-                message: "El mensaje no puede estar vacío."
+                message: "El historial no puede estar vacío."
             });
         }
 
-        const response = await generateResponse(message);
+        const response = await generateResponse(history);
 
         res.json({
             success: true,
@@ -32,25 +30,6 @@ router.post("/", async (req, res) => {
             message: "No se pudo obtener una respuesta de la IA."
         });
     }
-});
-
-
-router.get("/models", async (req, res) => {
-  try {
-    await listModels();
-
-    res.json({
-      success: true,
-      message: "Modelos mostrados en la consola."
-    });
-  } catch (error) {
-    console.error("Error al listar modelos:", error.message);
-
-    res.status(500).json({
-      success: false,
-      message: "No se pudieron obtener los modelos."
-    });
-  }
 });
 
 module.exports = router;

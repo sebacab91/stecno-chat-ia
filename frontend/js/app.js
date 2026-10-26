@@ -3,6 +3,9 @@ const messageInput = document.getElementById("message-input");
 const messagesContainer = document.getElementById("messages");
 const newChatButton = document.getElementById("new-chat");
 
+// Guarda el historial de la conversación para mandárselo a Gemini en cada mensaje
+let conversationHistory = [];
+
 // Agrega un mensaje a la conversación
 function addMessage(text, sender) {
     // Si todavía está visible la bienvenida, la quitamos
@@ -27,10 +30,13 @@ function addMessage(text, sender) {
 // Enviar mensaje al backend
 async function sendMessage(message) {
 
+    // Agregamos el mensaje del usuario al historial
+    conversationHistory.push({ role: "user", text: message });
+
     try {
 
         const response = await fetch(
-            "http://localhost:3000/api/chat",
+            "/api/chat",
             {
                 method: "POST",
 
@@ -39,7 +45,7 @@ async function sendMessage(message) {
                 },
 
                 body: JSON.stringify({
-                    message: message
+                    history: conversationHistory
                 })
             }
         );
@@ -51,6 +57,9 @@ async function sendMessage(message) {
        if (!response.ok || !data.success) {
             throw new Error(data.message || "Error del servidor");
         }
+
+        // Agregamos la respuesta de la IA al historial también
+        conversationHistory.push({ role: "model", text: data.response });
 
         addMessage(data.response, "assistant");
 
@@ -89,13 +98,15 @@ chatForm.addEventListener("submit", async (event) => {
 
 // Nuevo chat
 newChatButton.addEventListener("click", () => {
+    conversationHistory = [];
+
     messagesContainer.innerHTML = `
         <div class="welcome">
-            <div class="welcome-icon">✦</div>
-            <h2>¿En qué puedo ayudarte?</h2>
+            <div class="welcome-icon">ST</div>
+            <h2>¿En qué proyecto estás pensando?</h2>
             <p>
-                Escribí tu pregunta y comencemos
-                una conversación.
+                Contame qué querés resolver y te hago
+                algunas preguntas para entender la magnitud.
             </p>
         </div>
     `;

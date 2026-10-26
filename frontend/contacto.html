@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stecno — Contacto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="brand">
+                <svg class="brand-mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="brandGrad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#1f6feb"/>
+                            <stop offset="1" stop-color="#22d3c7"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="40" height="40" rx="11" fill="url(#brandGrad)"/>
+                    <circle cx="13" cy="14" r="3" fill="#fff"/>
+                    <circle cx="27" cy="14" r="3" fill="#fff"/>
+                    <circle cx="20" cy="27" r="3" fill="#fff"/>
+                    <line x1="13" y1="14" x2="27" y2="14" stroke="#fff" stroke-width="1.6"/>
+                    <line x1="13" y1="14" x2="20" y2="27" stroke="#fff" stroke-width="1.6"/>
+                    <line x1="27" y1="14" x2="20" y2="27" stroke="#fff" stroke-width="1.6"/>
+                </svg>
+                Stecno
+            </a>
+
+            <nav class="main-nav">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="contacto.html" aria-current="page">Contacto</a>
+                <a href="chat.html" class="nav-cta" target="_blank" rel="noopener">✦ Asistente IA</a>
+            </nav>
+        </div>
+    </header>
+
+    <section style="padding-bottom:0;">
+        <div class="container">
+            <div class="section-title" style="margin-bottom:28px;">
+                <span class="eyebrow">Contacto</span>
+                <h2>Escribinos</h2>
+                <p>Completá el formulario y te respondemos a la brevedad, o conversá ahora mismo con el <a href="chat.html" style="color:var(--color-blue); font-weight:700;" target="_blank" rel="noopener">asistente IA</a> para hacer un primer relevamiento de tu proyecto.</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top:0;">
+        <div class="container contact-wrap">
+            <form class="contact-form" action="#" method="post">
+                <div class="form-row">
+                    <label for="nombre">Nombre y apellido</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+
+                <div class="form-row">
+                    <label for="servicio">Servicio de interés</label>
+                    <select id="servicio" name="servicio">
+                        <option value="switches">Switches</option>
+                        <option value="fortigate">FortiGate + Access Points</option>
+                        <option value="starlink">Starlink</option>
+                        <option value="lan">Redes LAN</option>
+                        <option value="zabbix">Monitoreo con Zabbix</option>
+                        <option value="vpn">Interconexión de sedes (VPN)</option>
+                        <option value="camaras">Videovigilancia</option>
+                        <option value="otro">Otra consulta</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="mensaje">Contanos tu proyecto</label>
+                    <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enviar consulta</button>
+            </form>
+
+            <div>
+                <ul class="contact-info-list">
+                    <li>
+                        <span class="icon">📍</span>
+                        <div>
+                            <strong>Oficina</strong>
+                            Cerrito 450, Montevideo
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Presupuestos</strong>
+                            presupuestos@stecno.com
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🕒</span>
+                        <div>
+                            <strong>Horario de atención</strong>
+                            Lunes a viernes 9:00–18:00hs
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">✦</span>
+                        <div>
+                            <strong>Fuera de ese horario</strong>
+                            Escribile al <a href="chat.html" style="color:var(--color-blue); font-weight:700;" target="_blank" rel="noopener">asistente IA</a>, disponible las 24 horas
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="map-placeholder">Mapa — Cerrito 450</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Stecno</h3>
+                <p>Integración de infraestructura de redes y sistemas en Montevideo: desde el diseño hasta el soporte post-instalación.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="chat.html" target="_blank" rel="noopener">Asistente IA</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li>Cerrito 450, Montevideo</li>
+                    <li>presupuestos@stecno.com</li>
+                    <li>Lun. a vier. 9:00–18:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Stecno. Proyecto académico — UTU, Tecnicatura en Redes y Software.
+        </div>
+    </footer>
+
+</body>
+</html>

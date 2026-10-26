@@ -11,6 +11,10 @@ const app = express();
 
 const PORT = 3000;
 
+const path = require("path");
+
+app.use(express.static(path.join(__dirname, "../../frontend")));
+
 // Permitir peticiones desde el frontend- Configuración de CORS
 app.use(cors());
 
