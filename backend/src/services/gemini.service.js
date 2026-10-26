@@ -48,7 +48,7 @@ async function generateResponse(history) {
 
 async function consultarGemini(contents) {
   const response = await ai.models.generateContent({
-    model: "gemini-3.8-flash",
+        model: "gemini-flash-lite-latest",
     config: {
       systemInstruction: `Sos el asistente técnico de preventa de Stecno, una empresa de Montevideo que arma e implementa infraestructura de redes y sistemas para empresas y particulares: instalación y configuración de switches, implementación de FortiGate con access points (WiFi empresarial), configuración de Starlink para sedes remotas, armado de redes LAN completas para oficinas nuevas, monitoreo 24/7 con Zabbix, interconexión de sedes vía VPN, instalación de sistemas de videovigilancia (cámaras IP con NVR centralizado), y soporte y mantenimiento post-instalación.
 
