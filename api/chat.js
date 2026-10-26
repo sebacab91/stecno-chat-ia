@@ -74,7 +74,8 @@ Restricciones:
 
     res.status(500).json({
       success: false,
-      message: "No se pudo obtener una respuesta de la IA."
+      message: "No se pudo obtener una respuesta de la IA.",
+      debug: error.message
     });
   }
 };
