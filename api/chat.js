@@ -8,7 +8,13 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
 });
 
-module.exports = async function handler(req, res) {
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function handler(req, res) {
 
   if (req.method !== "POST") {
     res.status(405).json({
@@ -36,10 +42,34 @@ module.exports = async function handler(req, res) {
       };
     });
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.8-flash",
-      config: {
-        systemInstruction: `Sos el asistente técnico de preventa de Stecno, una empresa de Montevideo que arma e implementa infraestructura de redes y sistemas para empresas y particulares: instalación y configuración de switches, implementación de FortiGate con access points (WiFi empresarial), configuración de Starlink para sedes remotas, armado de redes LAN completas para oficinas nuevas, monitoreo 24/7 con Zabbix, interconexión de sedes vía VPN, instalación de sistemas de videovigilancia (cámaras IP con NVR centralizado), y soporte y mantenimiento post-instalación.
+    const texto = await generarConReintentos(contents);
+
+    res.status(200).json({
+      success: true,
+      response: texto
+    });
+
+  } catch (error) {
+    console.error("Error al consultar Gemini:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: "No se pudo obtener una respuesta de la IA."
+    });
+  }
+}
+
+// Reintenta un par de veces si Gemini devuelve "503 - modelo saturado",
+// porque en la práctica el error no es constante: a veces el siguiente intento sí responde.
+async function generarConReintentos(contents) {
+  const maxIntentos = 3;
+
+  for (let intento = 1; intento <= maxIntentos; intento++) {
+    try {
+      const response = await ai.models.generateContent({
+        model: "gemini-3.8-flash",
+        config: {
+          systemInstruction: `Sos el asistente técnico de preventa de Stecno, una empresa de Montevideo que arma e implementa infraestructura de redes y sistemas para empresas y particulares: instalación y configuración de switches, implementación de FortiGate con access points (WiFi empresarial), configuración de Starlink para sedes remotas, armado de redes LAN completas para oficinas nuevas, monitoreo 24/7 con Zabbix, interconexión de sedes vía VPN, instalación de sistemas de videovigilancia (cámaras IP con NVR centralizado), y soporte y mantenimiento post-instalación.
 
 Datos fijos de Stecno que podés usar para responder: la oficina está en Cerrito 450, Montevideo; atienden de lunes a viernes de 9:00 a 18:00hs; cubren Montevideo y el área metropolitana, y los proyectos más grandes en el resto del país se coordinan aparte.
 
@@ -61,21 +91,26 @@ Restricciones:
 - No inventes marcas ni modelos de equipos puntuales.
 - No respondas consultas que no tengan relación con los servicios de Stecno.`
       },
-      contents: contents
-    });
+        contents: contents
+      });
 
-    res.status(200).json({
-      success: true,
-      response: response.text
-    });
+      return response.text;
 
-  } catch (error) {
-    console.error("Error al consultar Gemini:", error.message);
+    } catch (error) {
+      const estaSaturado =
+        error.message && error.message.includes("UNAVAILABLE");
 
-    res.status(500).json({
-      success: false,
-      message: "No se pudo obtener una respuesta de la IA.",
-      debug: error.message
-    });
+      if (!estaSaturado || intento === maxIntentos) {
+        throw error;
+      }
+
+      console.log(`Gemini saturado, reintentando (intento ${intento} de ${maxIntentos})...`);
+      await sleep(intento * 1500);
+    }
   }
+}
+
+module.exports = handler;
+module.exports.config = {
+  maxDuration: 30
 };

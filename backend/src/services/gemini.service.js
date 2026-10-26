@@ -8,7 +8,16 @@ const ai = new GoogleGenAI({
   apiKey: process.env.GEMINI_API_KEY
 });
 
-// Genera una respuesta de Gemini a partir del historial completo de la conversación
+// Espera la cantidad de milisegundos indicada antes de continuar
+function sleep(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
+
+// Genera una respuesta de Gemini a partir del historial completo de la conversación.
+// Si Gemini devuelve "503 - modelo saturado", reintenta un par de veces antes de rendirse,
+// porque en la práctica el error no es constante: a veces el siguiente intento sí responde.
 async function generateResponse(history) {
   // Convertimos el historial al formato que espera Gemini
   const contents = history.map(function (item) {
@@ -18,8 +27,28 @@ async function generateResponse(history) {
     };
   });
 
+  const maxIntentos = 3;
+
+  for (let intento = 1; intento <= maxIntentos; intento++) {
+    try {
+      return await consultarGemini(contents);
+    } catch (error) {
+      const estaSaturado =
+        error.message && error.message.includes("UNAVAILABLE");
+
+      if (!estaSaturado || intento === maxIntentos) {
+        throw error;
+      }
+
+      console.log(`Gemini saturado, reintentando (intento ${intento} de ${maxIntentos})...`);
+      await sleep(intento * 1500);
+    }
+  }
+}
+
+async function consultarGemini(contents) {
   const response = await ai.models.generateContent({
-    model: "gemini-flash-latest",
+    model: "gemini-3.8-flash",
     config: {
       systemInstruction: `Sos el asistente técnico de preventa de Stecno, una empresa de Montevideo que arma e implementa infraestructura de redes y sistemas para empresas y particulares: instalación y configuración de switches, implementación de FortiGate con access points (WiFi empresarial), configuración de Starlink para sedes remotas, armado de redes LAN completas para oficinas nuevas, monitoreo 24/7 con Zabbix, interconexión de sedes vía VPN, instalación de sistemas de videovigilancia (cámaras IP con NVR centralizado), y soporte y mantenimiento post-instalación.
 
